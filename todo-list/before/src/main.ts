@@ -27,9 +27,7 @@ function createNewTodo(value: string) {
   const cloneList = list.cloneNode(true) as HTMLLIElement;
   const labelText = cloneList.querySelector('.label-text')!;
   labelText.textContent = value;
-  return cloneList
-  // const cloneList = document.createElement('li');
-  // list.classList.add('list-item');
+  return cloneList;
 }
 
 console.log(form, input);
