@@ -1,7 +1,3 @@
-import './style.css'
-
-console.log('main')
-
 const form = document.querySelector<HTMLFormElement>('#new-todo-form')!;
 
 const list = document.querySelector<HTMLUListElement>('#list')
@@ -29,5 +25,7 @@ function createNewTodo(value: string) {
   labelText.textContent = value;
   return cloneList;
 }
+
+
 
 console.log(form, input);
