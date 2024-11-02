@@ -2,30 +2,28 @@ const form = document.querySelector<HTMLFormElement>('#new-todo-form')!;
 
 const list = document.querySelector<HTMLUListElement>('#list')
 
-const input = document.querySelector<HTMLInputElement>('#todo-input')!;
-
-const deleteBtn = document.querySelector<HTMLButtonElement>('delete-btn')!;
-
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
-  console.log('Form submitted!!');
-  const value = input?.value;
-  if (value) {
-    console.log(value);
-    const newTodo = createNewTodo(value);
-    newTodo
+  const input = document.querySelector<HTMLInputElement>('#todo-input');
+
+  if (input?.value) {
+    const newTodo = createNewTodo(input.value);
     list?.appendChild(newTodo);
   }
 });
 
 function createNewTodo(value: string) {
-  const list = document.querySelector<HTMLLIElement>('.list-item')!;
-  const cloneList = list.cloneNode(true) as HTMLLIElement;
+  const template = document.querySelector('#template')! as HTMLTemplateElement;
+  const cloneList = template.content.cloneNode(true) as HTMLLIElement;
   const labelText = cloneList.querySelector('.label-text')!;
   labelText.textContent = value;
   return cloneList;
 }
 
-
-
-console.log(form, input);
+list?.addEventListener('click', (e: Event) => {
+  const target = e.target as HTMLElement;
+  
+  if (target.matches('.delete-btn')) {
+    target.closest('.list-item')?.remove();
+  }
+});

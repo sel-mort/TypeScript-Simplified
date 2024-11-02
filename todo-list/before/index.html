@@ -3,7 +3,7 @@
   <head>
     <title>Advanced Todo List</title>
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="./src/main.ts"></script>
+    <script src="./src/main.ts" defer></script>
   </head>
   <body>
     <ul id="list">
@@ -22,4 +22,14 @@
       <button type="submit">Add Todo</button>
     </form>
   </body>
+
+  <template id="template">
+    <li class="list-item">
+      <label class="list-item-label">
+        <input class="label-input" type="checkbox" />
+        <span class="label-text">Placeholder Task</span>
+      </label>
+      <button class="delete-btn">Delete</button>
+    </li>
+  </template>
 </html>
