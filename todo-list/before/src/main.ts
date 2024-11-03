@@ -43,6 +43,8 @@ list?.addEventListener('click', (e: Event) => {
   
   if (target.matches('.delete-btn')) {
     target.closest('.list-item')?.remove();
+    const todo = target.id;
+    deleteTodo(todoList, todo);
   }
 });
 
@@ -60,4 +62,10 @@ function setTodo(todoList: Todo[], todo: Todo) {
   todoList.push(todo);
   localStorage.setItem("todoList", JSON.stringify(todoList));
   return todoList;
+}
+
+function deleteTodo(todoList: Todo[], id: string) {
+  todoList = todoList.filter((todo: Todo) => {
+    todo.id !== id;
+  });
 }
