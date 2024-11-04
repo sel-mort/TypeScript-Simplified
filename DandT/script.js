@@ -3,19 +3,20 @@ const defaultVar = document.querySelector('#default');
 const debounce = document.querySelector('#debounce');
 const throttle = document.querySelector('#throttle');
 
+const updateSearchText = debounceFunc(text => {
+    debounce.textContent = text;
+});
+
 input.addEventListener('input', (e) => {
     defaultVar.textContent = e.target.value;
 
-    debounceFunc(e, 1000);
-
+    updateSearchText(e.target.value);
 });
 
-function debounceFunc(e, delay) {
+
+function debounceFunc(cb, delay = 1000) {
     let debounceInterval;
-    return () => {
-        setTimeout(() => {
-            clearTimeout(debounceInterval);
-            debounce.textContent = e.target.value;
-        }, delay);
-    }
+    setTimeout(() => {
+
+    })
 }
