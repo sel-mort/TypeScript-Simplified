@@ -1,16 +1,21 @@
 const input = document.querySelector('#search-input');
-const defaultVar = document.querySelector('#default');
-const debounce = document.querySelector('#debounce');
-const throttle = document.querySelector('#throttle');
+const defaultText = document.querySelector('#default');
+const debounceText = document.querySelector('#debounce');
+const throttleText = document.querySelector('#throttle');
 
-const updateSearchText = debounceFunc(text => {
-    debounce.textContent = text;
+const debounce = debounceFunc(text => {
+    debounceText.textContent = text;
+});
+
+const throttle = throttleFunc(text => {
+    throttleText.textContent = text;
 });
 
 input.addEventListener('input', (e) => {
-    defaultVar.textContent = e.target.value;
+    defaultText.textContent = e.target.value;
 
-    updateSearchText(e.target.value);
+    debounce(e.target.value);
+    throttle(e.target.value);
 });
 
 
@@ -19,5 +24,17 @@ function debounceFunc(cb, delay = 1000) {
     return (...args) => {
         clearTimeout(debounceInterval);
         debounceInterval = setTimeout(() => cb(...args), delay);
+    }
+}
+
+function throttleFunc(cb, delay = 1000) {
+    let throttleInterval;
+    if (!throttleInterval) {
+        return (...args) => {
+            clearTimeout(throttleInterval);
+            throttleInterval = setTimeout(() => {
+                cb(...args);
+            }, delay);
+        }
     }
 }
