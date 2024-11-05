@@ -16,7 +16,8 @@ input.addEventListener('input', (e) => {
 
 function debounceFunc(cb, delay = 1000) {
     let debounceInterval;
-    setTimeout(() => {
-
-    })
+    return (...args) => {
+        clearTimeout(debounceInterval);
+        debounceInterval = setTimeout(() => cb(...args), delay);
+    }
 }
