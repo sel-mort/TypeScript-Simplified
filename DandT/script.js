@@ -27,14 +27,17 @@ function debounceFunc(cb, delay = 1000) {
     }
 }
 
-function throttleFunc(cb, delay = 1000) {
-    let throttleInterval;
-    if (!throttleInterval) {
-        return (...args) => {
-            clearTimeout(throttleInterval);
-            throttleInterval = setTimeout(() => {
-                cb(...args);
-            }, delay);
+function throttleFunc(cb, delay = 2000) {
+    let inThrottle;
+    let argg;
+    return (...args) => {
+        if (!inThrottle) {
+            cb(...argg);
+            inThrottle = true;
+            setTimeout(() => {
+                inThrottle = false, delay
+            })
         }
+        argg = args;
     }
 }
