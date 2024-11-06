@@ -27,17 +27,32 @@ function debounceFunc(cb, delay = 1000) {
     }
 }
 
-function throttleFunc(cb, delay = 2000) {
-    let inThrottle;
-    let argg;
-    return (...args) => {
-        if (!inThrottle) {
-            cb(...argg);
-            inThrottle = true;
-            setTimeout(() => {
-                inThrottle = false, delay
-            })
+function throttleFunc(cb, delay = 1000) {
+    let inThrottle = false;
+    let leftArgs
+
+    const timeOutFunc = () => {
+        
+        if (leftArgs == null) {
+            inThrottle = false;
+        } else {
+            cb(...leftArgs);
+            leftArgs = null;
         }
-        argg = args;
+        
+        setTimeout(timeOutFunc, delay)
     }
+
+    return (...args) => {
+        console.log(args)
+        if (inThrottle) {
+            leftArgs = args;
+            return;
+        }
+    
+        cb(...args);
+        inThrottle = true;
+        
+        setTimeout(timeOutFunc, delay)
+    } 
 }
