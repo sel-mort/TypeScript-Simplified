@@ -21,6 +21,7 @@ input.addEventListener('input', (e) => {
 
 function debounceFunc(cb, delay = 1000) {
     let debounceInterval;
+
     return (...args) => {
         clearTimeout(debounceInterval);
         debounceInterval = setTimeout(() => cb(...args), delay);
@@ -44,7 +45,7 @@ function throttleFunc(cb, delay = 1000) {
     }
 
     return (...args) => {
-        console.log(args)
+
         if (inThrottle) {
             leftArgs = args;
             return;
@@ -55,4 +56,4 @@ function throttleFunc(cb, delay = 1000) {
         
         setTimeout(timeOutFunc, delay)
     } 
-}
+};
