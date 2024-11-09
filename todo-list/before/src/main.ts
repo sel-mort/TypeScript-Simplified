@@ -57,7 +57,8 @@ function loadTodos() {
 
   todos.forEach((todo: Todo) => {
     list.appendChild(createNewTodoNode(todo));
-  })
+  });
+  
   return todos;
 }
 
