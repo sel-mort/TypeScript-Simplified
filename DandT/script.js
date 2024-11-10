@@ -16,6 +16,7 @@ input.addEventListener('input', (e) => {
 
     debounce(e.target.value);
     throttle(e.target.value);
+    fetchWithThreeRetries();
 });
 
 
