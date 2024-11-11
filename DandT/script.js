@@ -58,38 +58,3 @@ function throttleFunc(cb, delay = 1000) {
         setTimeout(timeOutFunc, delay)
     } 
 };
-
-function fetchWithRetry(url, retryLimit) {
-    let attempts = 0; // Encapsulated variable for tracking attempts
-
-    function attemptFetch(callback) {
-        console.log(`Attempt ${attempts + 1} of ${retryLimit}`);
-        setTimeout(() => {
-            const success = Math.random() > 0.5; // Simulate 50% chance of success
-            if (success) {
-                callback(null, { data: "Fetched data!" });
-            } else {
-                attempts++;
-                if (attempts < retryLimit) {
-                    console.log("Retrying...");
-                    attemptFetch(callback); // Retry
-                } else {
-                    callback(new Error("Failed to fetch data after retries"), null);
-                }
-            }
-        }, 1000); // Simulate async delay
-    }
-
-    return attemptFetch;
-}
-
-// Using a curried function to preset the retry limit to 3
-const fetchWithThreeRetries = fetchWithRetry("https://api.example.com/data", 3);
-
-fetchWithThreeRetries((error, data) => {
-    if (error) {
-        console.error(error.message);
-    } else {
-        console.log("Success:", data);
-    }
-});
