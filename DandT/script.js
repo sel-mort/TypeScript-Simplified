@@ -34,12 +34,12 @@ function throttleFunc(cb, delay = 1000) {
 
     const timeOutFunc = () => {
         
-        if (leftArgs == null) {
-            inThrottle = false;
-        } else {
-            cb(...leftArgs);
-            leftArgs = null;
-        }
+        // if (leftArgs == null) {
+        //     inThrottle = false;
+        // } else {
+        //     cb(...leftArgs);
+        //     leftArgs = null;
+        // }
         
         setTimeout(timeOutFunc, delay)
     }
