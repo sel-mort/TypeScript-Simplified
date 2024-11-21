@@ -44,8 +44,8 @@ list?.addEventListener('click', (e: Event) => {
   const target = e.target as HTMLElement;
   
   if (target.matches('.delete-btn')) {
-    target.closest('.list-item')?.remove();
     const todo = target.closest('.list-item')?.id;
+    target.closest('.list-item')?.remove();
     deleteTodo(todoList, todo ?? '');
   }
 });
