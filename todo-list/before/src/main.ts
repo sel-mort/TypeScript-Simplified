@@ -45,7 +45,6 @@ list?.addEventListener('click', (e: Event) => {
   
   if (target.matches('.delete-btn')) {
     target.closest('.list-item')?.remove();
-    console.log(target.closest('.list-item'))
     const todo = target.closest('.list-item')?.id;
     deleteTodo(todoList, todo ?? '');
   }
@@ -70,6 +69,7 @@ function setTodo(todoList: Todo[], todo: Todo) {
 
 function deleteTodo(todoList: Todo[], id: string) {
   todoList = todoList.filter((todo: Todo) => {
-    todo.id !== id;
+    return todo.id !== id;
   });
+  localStorage.setItem("todoList", JSON.stringify(todoList));
 }
